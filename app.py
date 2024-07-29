@@ -23,7 +23,7 @@ def avaliacoes():
 def login():
     return render_template('login.html')
 
-@app.route('/autenticar')
+@app.route('/autenticar', methods=['POST'])
 def autenticar():
     email = request.form("email")
     senha = request.form("senha")
