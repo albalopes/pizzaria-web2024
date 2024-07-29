@@ -32,7 +32,8 @@ def autenticar():
     else:
         flash('E-mail ou senha inválidos', 'danger')
         flash('Tente novamente', 'warning')
-        
+
         return redirect(url_for('login'))
         #return redirect('/login2')
+
 
