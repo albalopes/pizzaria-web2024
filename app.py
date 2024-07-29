@@ -30,8 +30,9 @@ def autenticar():
     if (email=="admin@email.com" and senha=="123"):
         return 'Bem vindo admin'
     else:
-        flash('E-mail ou senha inválidos')
-        flash('Tente novamente')
+        flash('E-mail ou senha inválidos', 'danger')
+        flash('Tente novamente', 'warning')
+        
         return redirect(url_for('login'))
         #return redirect('/login2')
 

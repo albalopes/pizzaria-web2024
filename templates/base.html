@@ -16,12 +16,12 @@
     </nav>
 
     <main>
-        {% set mensagens = get_flashed_messages() %}
+        {% set mensagens = get_flashed_messages(with_categories=true) %}
         {% if mensagens %}
-            <div class="alert alert-danger">
+            <div>
                 <ul>
-                {% for m in mensagens %}
-                    <li>{{m}}</li>
+                {% for cat, m in mensagens %}
+                    <li class="alert alert-{{cat}}">{{m}}</li>
                 {% endfor %}
                 </ul>
             </div>
