@@ -16,6 +16,13 @@
     </nav>
 
     <main>
+        {% set mensagens = get_flashed_messages() %}
+        {% if mensagens %}
+            <div>
+                Aqui vem a mensagem
+            </div>
+        {% endif %}
+
         {% block conteudo %}
         {% endblock %}
     </main>
