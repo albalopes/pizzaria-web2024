@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect, request, url_for
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sua-palavra-secreta'
@@ -22,3 +22,15 @@ def avaliacoes():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/autenticar')
+def autenticar():
+    email = request.form("email")
+    senha = request.form("senha")
+    if (email=="admin@email.com" and senha=="123"):
+        return 'Bem vindo admin'
+    else:
+        flash('E-mail ou senha inválidos')
+        return redirect(url_for('login'))
+        #return redirect('/login')
+
