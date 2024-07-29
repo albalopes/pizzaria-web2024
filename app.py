@@ -36,4 +36,6 @@ def autenticar():
         return redirect(url_for('login'))
         #return redirect('/login2')
 
-
+@app.route('/cadastro_usuarios', methods=['GET', 'POST'])
+def cadastro_usuarios():
+    return render_template('cadastro_usuarios.html')
