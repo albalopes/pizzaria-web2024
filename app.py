@@ -25,8 +25,8 @@ def login():
 
 @app.route('/autenticar', methods=['POST'])
 def autenticar():
-    email = request.form("email")
-    senha = request.form("senha")
+    email = request.form["email"]
+    senha = request.form["senha"]
     if (email=="admin@email.com" and senha=="123"):
         return 'Bem vindo admin'
     else:
