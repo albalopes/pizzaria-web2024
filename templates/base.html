@@ -18,7 +18,7 @@
     <main>
         {% set mensagens = get_flashed_messages() %}
         {% if mensagens %}
-            <div>
+            <div class="alert alert-danger">
                 <ul>
                 {% for m in mensagens %}
                     <li>{{m}}</li>
