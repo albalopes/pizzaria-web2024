@@ -19,7 +19,11 @@
         {% set mensagens = get_flashed_messages() %}
         {% if mensagens %}
             <div>
-                Aqui vem a mensagem
+                <ul>
+                {% for m in mensagens %}
+                    <li>{{m}}</li>
+                {% endfor %}
+                </ul>
             </div>
         {% endif %}
 

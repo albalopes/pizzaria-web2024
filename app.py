@@ -31,6 +31,7 @@ def autenticar():
         return 'Bem vindo admin'
     else:
         flash('E-mail ou senha inválidos')
+        flash('Tente novamente')
         return redirect(url_for('login'))
         #return redirect('/login')
 
