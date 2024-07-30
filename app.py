@@ -38,4 +38,7 @@ def autenticar():
 
 @app.route('/cadastro_usuarios', methods=['GET', 'POST'])
 def cadastro_usuarios():
-    return render_template('cadastro_usuarios.html')
+    if request.method=='GET':
+        return render_template('cadastro_usuarios.html')
+    else:
+        return 'Você submeteu o formulário'
