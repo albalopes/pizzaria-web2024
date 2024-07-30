@@ -41,4 +41,21 @@ def cadastro_usuarios():
     if request.method=='GET':
         return render_template('cadastro_usuarios.html')
     else:
-        return 'Você submeteu o formulário'
+        nome = request.form['nome']
+        email = request.form['email']
+        senha = request.form['senha']
+        csenha = request.form['csenha']
+
+        if nome == '' or email == '' or senha == '' or senha != csenha:
+            if nome == '':
+                flash('Campo nome não pode ser vazio', 'danger')
+            if email == '':
+                flash('Campo email não pode ser vazio', 'danger')
+            if senha == '':
+                flash('Campo senha não pode ser vazio', 'danger')
+            if senha != csenha:
+                flash('As senhas não conferem', 'danger')
+        else:
+            flash('Dados cadastrados com sucesso!', 'success')
+
+        return redirect(url_for('cadastro_usuario'))
