@@ -58,4 +58,4 @@ def cadastro_usuarios():
         else:
             flash('Dados cadastrados com sucesso!', 'success')
 
-        return redirect(url_for('cadastro_usuario'))
+        return redirect(url_for('cadastro_usuarios'))
