@@ -1,7 +1,23 @@
 from flask import Flask, render_template, flash, redirect, request, url_for
+from database import db
+import os
+from flask_migrate import Migrate
+from diario import Diario
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sua-palavra-secreta'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+username = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
+host = os.getenv('DB_HOST')
+mydb = os.getenv('DB_DATABASE')
+
+conexao = f"mysql+pymysql://{username}:{password}@{host}/{mydb}"
+app.config['SQLALCHEMY_DATABASE_URI'] = conexao
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
@@ -59,3 +75,11 @@ def cadastro_usuarios():
             flash('Dados cadastrados com sucesso!', 'success')
 
         return redirect(url_for('cadastro_usuarios'))
+
+
+@app.route('/add_diario')
+def add_diario():
+    d = Diario('LIC0X83', 'Desenvolvimento Web')
+    db.session.add(d)
+    db.session.commit()
+    return 'Dados inseridos com sucesso!'
