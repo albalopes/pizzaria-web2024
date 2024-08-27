@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-	<h3> Aqui vai aparecer uma tabela com os usuários cadastrados no banco</h3>
+    <p>
+        <a href="{{url_for('diario.create')}}">Novo diário</a>
+    </p>
+    <ul>
+    {% for d in dados %}
+        <li>
+           {{d.titulo}} - {{d.disciplina}}
+           editar 
+           excluir
+        </li>
+    {% endfor %}
+    </ul>
+	
 {% endblock %}
