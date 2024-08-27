@@ -2,9 +2,13 @@ from flask import Flask, render_template, flash, redirect, request, url_for
 from database import db
 import os
 from flask_migrate import Migrate
-from diario import Diario
+from models.diario import Diario
+from controllers.diario import bp_diario
+
 
 app = Flask(__name__)
+app.register_blueprint(bp_diario, url_prefix='/diario')
+
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 username = os.getenv('DB_USERNAME')
@@ -83,3 +87,30 @@ def add_diario():
     db.session.add(d)
     db.session.commit()
     return 'Dados inseridos com sucesso!'
+
+@app.route('/select_diario')
+def select_diario():
+    #dados = Diario.query.all() # SELECT * from diario
+    #for d in dados:
+    #    print(d.id, d.titulo, d.disciplina)
+
+    d = Diario.query.get(2) # SELECT * from diario WHERE id = 2
+    print(d.id, d.titulo, d.disciplina)
+
+    return 'Dados obtidos com sucesso'
+
+@app.route('/update_diario')
+def update_diario():
+    d = Diario.query.get(2)
+    d.titulo = 'LICX866'
+    d.disciplina = "Segurança da Informação"
+    db.session.add(d)
+    db.session.commit()
+    return 'Dados atualizados com sucesso'
+
+@app.route('/delete_diario')
+def delete_diario():
+    d = Diario.query.get(2)
+    db.session.delete(d)
+    db.session.commit()
+    return 'Dados excluídos com sucesso'
