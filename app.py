@@ -2,12 +2,14 @@ from flask import Flask, render_template, flash, redirect, request, url_for
 from database import db
 import os
 from flask_migrate import Migrate
-from models.diario import Diario
+from models import *
 from controllers.diario import bp_diario
+from controllers.usuario import bp_usuario
 
 
 app = Flask(__name__)
 app.register_blueprint(bp_diario, url_prefix='/diario')
+app.register_blueprint(bp_usuario, url_prefix='/usuario')
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
