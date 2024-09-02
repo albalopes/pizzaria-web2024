@@ -36,4 +36,17 @@ def update(id):
         db.session.add(d)
         db.session.commit()
         return redirect(url_for('diario.recovery'))
-    
+
+
+@bp_diario.route('/delete/<id>', methods=['GET', 'POST'])
+def delete(id):
+    d = Diario.query.get(id)
+
+    if request.method=="GET":
+        return render_template('diario_delete.html', d=d)
+
+    if request.method=="POST":
+        db.session.delete(d)
+        db.session.commit()
+        return redirect(url_for('diario.recovery'))
+        

@@ -8,7 +8,7 @@
         <li>
            {{d.titulo}} - {{d.disciplina}}
            <a href="{{url_for('diario.update', id=d.id)}}">editar</a>
-           excluir
+           <a href="{{url_for('diario.delete', id=d.id)}}">excluir</a>
         </li>
     {% endfor %}
     </ul>
