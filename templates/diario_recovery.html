@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block conteudo %}
     <p>
-        <a href="{{url_for('diario.create')}}">Novo diário</a>
+        <a href="{{url_for('diario.create', id=id)}}">Novo diário</a>
     </p>
     <ul>
     {% for d in dados %}
         <li>
            {{d.titulo}} - {{d.disciplina}}
-           editar 
+           <a href="{{url_for('diario.update', id=d.id)}}">editar</a>
            excluir
         </li>
     {% endfor %}

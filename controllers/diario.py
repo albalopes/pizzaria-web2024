@@ -22,4 +22,18 @@ def create():
         db.session.add(d)
         db.session.commit()
         return redirect(url_for('diario.recovery'))
+
+@bp_diario.route('/update/<id>', methods=['GET', 'POST'])
+def update(id):
+    d = Diario.query.get(id)
+    
+    if request.method=="GET":
+        return render_template('diario_update.html', d=d)
+
+    if request.method=="POST":
+        d.titulo = request.form['titulo']
+        d.disciplina = request.form['disciplina']
+        db.session.add(d)
+        db.session.commit()
+        return redirect(url_for('diario.recovery'))
     
