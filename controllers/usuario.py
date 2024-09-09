@@ -40,10 +40,12 @@ def load_user(id):
 def autenticar():
     email = request.form['email'] 
     senha = request.form['senha']
-    usuario = Usuario.query.filter_by(email=email)
+    usuario = Usuario.query.filter_by(email=email).first()
+
+    print(usuario)
     if (usuario and usuario.senha == senha):
         login_user(usuario)
-        return redirect('usuario.recovery')
+        return redirect('recovery')
     else:
         flash('Login ou senha incorretos')
-        return redirect('login')
+        return redirect('/login')
