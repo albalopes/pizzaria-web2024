@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, flash, url_for
-from database import db
+from utils import db
 from models.diario import Diario
 from flask import Blueprint
 

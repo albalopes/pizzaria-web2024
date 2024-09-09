@@ -1,5 +1,5 @@
 from flask import Flask, render_template, flash, redirect, request, url_for
-from database import db
+from utils import db, lm
 import os
 from flask_migrate import Migrate
 from models import *
@@ -23,6 +23,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = conexao
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+lm.init_app(app)
+
 migrate = Migrate(app, db)
 
 @app.route('/')

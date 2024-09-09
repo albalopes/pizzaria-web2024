@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, flash, url_for
-from database import db
+from utils import db, lm
 from models.usuario import Usuario
 from flask import Blueprint
 import hashlib
@@ -29,3 +29,8 @@ def create():
         db.session.add(u)
         db.session.commit()
         return redirect(url_for('usuario.recovery'))
+    
+@lm.user_load
+def load_user(id):
+    usuario = Usuario.query.get(id)
+    return usuario
