@@ -29,7 +29,7 @@ def create():
         u = Usuario(nome, email, senha)
         db.session.add(u)
         db.session.commit()
-        return redirect(url_for('usuario.recovery'))
+        return redirect(url_for('diario.recovery'))
     
 @lm.user_loader
 def load_user(id):
@@ -45,7 +45,7 @@ def autenticar():
     print(usuario)
     if (usuario and usuario.senha == senha):
         login_user(usuario)
-        return redirect('recovery')
+        return redirect(url_for('diario.recovery'))
     else:
         flash('Login ou senha incorretos')
         return redirect('/login')
