@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, flash, url_for
 from utils import db, lm
 from models.usuario import Usuario
 from flask import Blueprint
-from flask_login import login_user
+from flask_login import login_user, logout_user
 import hashlib
 
 bp_usuario = Blueprint("usuario", __name__, template_folder='templates')
@@ -49,3 +49,9 @@ def autenticar():
     else:
         flash('Login ou senha incorretos')
         return redirect('/login')
+
+@bp_usuario.route('/logoff')
+def logoff():
+    logout_user()
+    flash('Usuário desconectado do sistema')
+    return redirect('/login')
