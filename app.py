@@ -118,3 +118,11 @@ def delete_diario():
     db.session.delete(d)
     db.session.commit()
     return 'Dados excluídos com sucesso'
+
+@app.errorhandler(401)
+def acesso_negado(e):
+    return render_template('acesso_negado.html')
+
+@app.errorhandler(404)
+def acesso_negado(e):
+    return render_template('not_found.html')
